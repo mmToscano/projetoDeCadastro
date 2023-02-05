@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoFullStack.projetoFull.entities.Class;
+import br.com.projetoFullStack.projetoFull.entities.Student;
 import br.com.projetoFullStack.projetoFull.servives.ClassService;
 
 @RestController
@@ -19,6 +20,7 @@ public class ClassResource {
 	@Autowired
 	private ClassService service;
 	
+	@GetMapping
 	public ResponseEntity<List<Class>> findAll(){
 		List list = service.findAll();
 		return ResponseEntity.ok().body(list);
@@ -28,6 +30,12 @@ public class ClassResource {
 	public ResponseEntity<Class> findById(@PathVariable Integer id){
 		Class obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping(value = "/findStudents/{id}")
+	public ResponseEntity<List<Student>> findStudentsByIdClass(@PathVariable Integer id){
+		List list = service.findStudentsByIdClass(id);
+		return ResponseEntity.ok().body(list);
 	}
 
 }
