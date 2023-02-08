@@ -5,11 +5,12 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -25,11 +26,16 @@ public class Class {
 	@OneToMany(mappedBy = "studentClass")
 	private Set<Student> students = new HashSet<>();
 	
+	@ManyToOne
+	@JoinColumn(name = "class_course_id")
+	private Course course;
+	
 	public Class() {}
 
-	public Class(Integer idClass) {
+	public Class(Integer idClass, Course course) {
 		super();
 		this.idClass = idClass;
+		this.course = course;
 	}
 
 	public Integer getIdClass() {
@@ -67,6 +73,14 @@ public class Class {
 		} else if (!idClass.equals(other.idClass))
 			return false;
 		return true;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 	
 	

@@ -44,13 +44,17 @@ public class Student {
 	private String studentStatus;
 	
 	@ManyToOne
+	@JoinColumn(name="student_course_id")
+	private Course course;
+	
+	@ManyToOne
 	@JoinColumn(name = "student_class_id")
 	private Class studentClass;
 	
 	public Student() {}
 
 	public Student(Integer idStudent, String studentName, String birthDate, String cpf, String addres, String campus,
-			String phone, String dateOfEntry, String studentStatus, Class studentClass) {
+			String phone, String dateOfEntry, String studentStatus, Class studentClass, Course course) {
 		super();
 		this.idStudent = idStudent;
 		this.studentName = studentName;
@@ -62,6 +66,7 @@ public class Student {
 		this.dateOfEntry = dateOfEntry;
 		this.studentStatus = studentStatus;
 		this.studentClass = studentClass;
+		this.course = course;
 	}
 
 	public Integer getIdStudent() {
@@ -167,6 +172,14 @@ public class Student {
 		} else if (!idStudent.equals(other.idStudent))
 			return false;
 		return true;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 	
 	
