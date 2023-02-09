@@ -1,6 +1,9 @@
 package br.com.projetoFullStack.projetoFull.entities;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -50,6 +54,11 @@ public class Student {
 	@ManyToOne
 	@JoinColumn(name = "student_class_id")
 	private Class studentClass;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "student")
+	private Set<StudentTest> studentTests = new HashSet<>();
+	
 	
 	public Student() {}
 
@@ -147,6 +156,10 @@ public class Student {
 
 	public void setStudentClass(Class studentClass) {
 		this.studentClass = studentClass;
+	}
+	
+	public Set<StudentTest> getStudentTests() {
+		return studentTests;
 	}
 
 	@Override
