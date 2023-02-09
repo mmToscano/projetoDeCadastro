@@ -34,6 +34,10 @@ public class Course {
 	@OneToMany(mappedBy = "course")
 	private Set<Student> students = new HashSet<>();
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "course")
+	private Set<CourseTest> courseTests = new HashSet<>();
+	
 	public Course() {}
 
 	public Course(Integer id, String courseName, Integer workload) {
@@ -74,6 +78,10 @@ public class Course {
 
 	public Set<Student> getStudents() {
 		return students;
+	}
+	
+	public Set<CourseTest> getCourseTests(){
+		return courseTests;
 	}
 
 	@Override
