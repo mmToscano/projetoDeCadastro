@@ -24,6 +24,7 @@ public class Course {
 	@Column(name = "course_name", length = 30, nullable = true)
 	private String courseName;
 	
+	@Column(nullable = true)
 	private Integer workload;
 	
 	@JsonIgnore
@@ -108,6 +109,14 @@ public class Course {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Course [idCourse=" + idCourse + ", courseName=" + courseName + ", workload=" + workload + ", classes="
+				+ classes + ", students=" + students + ", courseTests=" + courseTests + "]";
+	}
+	
+	
 
 	
 	

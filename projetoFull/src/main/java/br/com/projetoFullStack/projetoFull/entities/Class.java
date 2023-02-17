@@ -82,6 +82,12 @@ public class Class {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+
+	@Override
+	public String toString() {
+		return "Class [idClass=" + idClass + ", students=" + students + ", course=" + course + "]";
+	}
+	
 	
 	
 	

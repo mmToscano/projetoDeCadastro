@@ -26,22 +26,27 @@ public class StudentTest {
 	@Column(name = "student_test_grade", nullable=false)
 	private Double studentTestGrade;
 	
+	@Column(name="test_type", nullable=false)
+	private String testType;
+	
+
 	@Column(name = "student_test_achieved", nullable=false)
 	private Double studentTestAchieved;
 	
 	@ManyToOne
-	@JoinColumn(name="student_test_student")
+	@JoinColumn(name="student_test_student_id")
 	private Student student;
 	
 	public StudentTest() {}
 
-	public StudentTest(Integer idStudentTest, String testDate, String studentTestName, Double studentTestGrade,
+	public StudentTest(Integer idStudentTest, String testDate, String studentTestName, Double studentTestGrade,String testType,
 			Double studentTestAchieved, Student student) {
 		super();
 		this.idStudentTest = idStudentTest;
 		this.testDate = testDate;
 		this.studentTestName = studentTestName;
 		this.studentTestGrade = studentTestGrade;
+		this.testType = testType;
 		this.studentTestAchieved = studentTestAchieved;
 		this.student = student;
 	}
@@ -76,6 +81,14 @@ public class StudentTest {
 
 	public void setStudentTestGrade(Double studentTestGrade) {
 		this.studentTestGrade = studentTestGrade;
+	}
+	
+	public String getTestType() {
+		return testType;
+	}
+
+	public void setTestType(String testType) {
+		this.testType = testType;
 	}
 
 	public Double getStudentTestAchieved() {

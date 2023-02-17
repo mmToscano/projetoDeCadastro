@@ -23,6 +23,11 @@ public class CourseTest{
 	@Column(name = "course_test_grade", nullable=false)
 	private Double fullGrade;
 	
+	@Column(name = "test_type")
+	private String testType;
+	
+	
+
 	@Column(name = "course_test_creation_day", nullable=false)
 	private String courseTestCreationDay;
 	
@@ -35,12 +40,13 @@ public class CourseTest{
 	
 	
 
-	public CourseTest(Integer idCourseTest, String testName, Double fullGrade, String courseTestCreationDay,
+	public CourseTest(Integer idCourseTest, String testName, Double fullGrade, String testType, String courseTestCreationDay,
 			Course course) {
 		super();
 		this.idCourseTest = idCourseTest;
 		this.testName = testName;
 		this.fullGrade = fullGrade;
+		this.testType = testType;
 		this.courseTestCreationDay = courseTestCreationDay;
 		this.course = course;
 	}
@@ -79,6 +85,14 @@ public class CourseTest{
 
 	public void setFullGrade(Double fullGrade) {
 		this.fullGrade = fullGrade;
+	}
+	
+	public String getTestType() {
+		return testType;
+	}
+
+	public void setTestType(String testType) {
+		this.testType = testType;
 	}
 
 

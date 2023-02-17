@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,8 +48,8 @@ public class Student {
 	@Column(name = "student_status", length = 15, nullable = false)
 	private String studentStatus;
 	
-	@ManyToOne
-	@JoinColumn(name="student_course_id")
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="student_course_id", nullable=true)
 	private Course course;
 	
 	@ManyToOne
@@ -194,6 +195,16 @@ public class Student {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+
+	@Override
+	public String toString() {
+		return "Student [idStudent=" + idStudent + ", studentName=" + studentName + ", birthDate=" + birthDate
+				+ ", cpf=" + cpf + ", addres=" + addres + ", campus=" + campus + ", phone=" + phone + ", dateOfEntry="
+				+ dateOfEntry + ", studentStatus=" + studentStatus + ", course=" + course + ", studentClass="
+				+ studentClass + ", studentTests=" + studentTests + "]";
+	}
+	
+	
 	
 	
 	

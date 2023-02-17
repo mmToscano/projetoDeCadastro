@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoFullStack.projetoFull.entities.CourseTest;
-import br.com.projetoFullStack.projetoFull.servives.CourseTestService;
+import br.com.projetoFullStack.projetoFull.services.CourseTestService;
 
 @RestController
 @RequestMapping(value = "/courseTests")

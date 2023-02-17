@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoFullStack.projetoFull.entities.Class;
 import br.com.projetoFullStack.projetoFull.entities.Student;
-import br.com.projetoFullStack.projetoFull.servives.ClassService;
+import br.com.projetoFullStack.projetoFull.services.ClassService;
 
 @RestController
 @RequestMapping(value = "/classes")
