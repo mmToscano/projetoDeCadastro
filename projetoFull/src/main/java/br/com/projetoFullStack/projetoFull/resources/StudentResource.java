@@ -5,17 +5,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.projetoFullStack.projetoFull.entities.Student;
 import br.com.projetoFullStack.projetoFull.services.StudentService;
 
+@CrossOrigin(origins = "http://localhost:8080") //tentar 3306
 @RestController
 @RequestMapping(value = "/students")
 public class StudentResource {
@@ -37,11 +40,14 @@ public class StudentResource {
 	
 	@PostMapping
 	public ResponseEntity<Student> insert(@RequestBody Student obj) {
-		System.out.println("OK");
+		URI uri = null;
+		try {
 		service.insert(obj);
-		System.out.println("OK");
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+		uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getIdStudent()).toUri();
+		}catch(HttpClientErrorException e) {
+			System.out.println(e.getMessage());
+		}
 		return ResponseEntity.created(uri).body(obj);
 		
 		

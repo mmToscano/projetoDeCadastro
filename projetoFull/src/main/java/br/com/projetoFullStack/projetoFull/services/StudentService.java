@@ -40,19 +40,11 @@ public class StudentService {
 	@Transactional
 	public Student insert(Student student) {
 		
-		System.out.println("OK");
-		
 		Student obj = createStudent(student);
-		System.out.println("Criou o objeto");
 		
 		if(obj.getStudentClass().getCourse().getId() != obj.getCourse().getId()) {
 			throw new IllegalArgumentException("the student's class does not match it's course");
 		}
-		System.out.println("Passou da verificação do erro");
-		
-		
-		//Session session = Hibernate.getSessionFactory().openSession();
-		
 		Student newObj = entityManager.merge(obj);
 		return repository.save(newObj);
 	}

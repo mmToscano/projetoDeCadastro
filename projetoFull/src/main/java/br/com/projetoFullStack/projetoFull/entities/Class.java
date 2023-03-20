@@ -5,6 +5,8 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,8 +28,8 @@ public class Class {
 	@OneToMany(mappedBy = "studentClass")
 	private Set<Student> students = new HashSet<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "class_course_id")
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "class_course_id", nullable = true)
 	private Course course;
 	
 	public Class() {}

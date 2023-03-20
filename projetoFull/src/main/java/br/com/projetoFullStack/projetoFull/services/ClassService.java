@@ -12,12 +12,21 @@ import br.com.projetoFullStack.projetoFull.entities.Course;
 import br.com.projetoFullStack.projetoFull.entities.Student;
 import br.com.projetoFullStack.projetoFull.repositories.ClassRepository;
 import br.com.projetoFullStack.projetoFull.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ClassService {
 	
 	@Autowired
 	private ClassRepository repository;
+	
+	@Autowired
+	private CourseService courseService;
+	
+	@PersistenceContext
+    private EntityManager entityManager;
 	
 	public List<Class> findAll(){
 		return repository.findAll();
@@ -36,6 +45,16 @@ public class ClassService {
 		return studentsList;
 	}
 	
+	@Transactional
+	public Class insert(Class obj) {
+		Course newCourse = courseService.createCourse(obj.getCourse());
+		obj.setCourse(newCourse);
+		
+		Class newClass = entityManager.merge(obj);
+		return repository.save(newClass);
+	}
+	
+	//Utility methods
 	public Class createClass(Class classObj) {
 		Class newClass = null;
 		for(Class item: findAll()) {

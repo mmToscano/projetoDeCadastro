@@ -27,4 +27,7 @@ public class CourseTestService {
 		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 	
+	public CourseTest insert(CourseTest test) {
+		return repository.save(test);
+	}
 }

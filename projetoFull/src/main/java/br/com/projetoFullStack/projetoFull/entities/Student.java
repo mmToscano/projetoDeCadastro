@@ -33,10 +33,10 @@ public class Student {
 	@Column(name = "cpf", length = 11, nullable = true)
 	private String cpf;
 	
-	@Column(name = "addres", length = 40, nullable = false)
+	@Column(name = "addres", length = 40, nullable = true)//mudei
 	private String addres;
 	
-	@Column(name = "campus", length = 30, nullable = false)
+	@Column(name = "campus", length = 30, nullable = true)//mudei
 	private String campus;
 	
 	@Column(name = "phone", length = 30, nullable = true)
