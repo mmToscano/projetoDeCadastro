@@ -40,14 +40,11 @@ public class StudentResource {
 	
 	@PostMapping
 	public ResponseEntity<Student> insert(@RequestBody Student obj) {
+		//System.out.println("Chegou");
 		URI uri = null;
-		try {
 		service.insert(obj);
 		uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getIdStudent()).toUri();
-		}catch(HttpClientErrorException e) {
-			System.out.println(e.getMessage());
-		}
 		return ResponseEntity.created(uri).body(obj);
 		
 		

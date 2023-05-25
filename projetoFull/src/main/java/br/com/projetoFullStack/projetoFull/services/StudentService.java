@@ -41,6 +41,7 @@ public class StudentService {
 	public Student insert(Student student) {
 		
 		Student obj = createStudent(student);
+		System.out.println("Criou");
 		
 		if(obj.getStudentClass().getCourse().getId() != obj.getCourse().getId()) {
 			throw new IllegalArgumentException("the student's class does not match it's course");
@@ -52,6 +53,7 @@ public class StudentService {
 	
 	public Student createStudent(Student student) {
 		Student newStudent = new Student(student.getIdStudent(), student.getStudentName(), student.getBirthDate(), student.getCpf(), student.getAddres(), student.getCampus(), student.getPhone(), student.getDateOfEntry(), student.getStudentStatus(), classService.createClass(student.getStudentClass()), courseService.createCourse(student.getCourse()));
+		System.out.println("criou");
 		return newStudent;
 	}
 	
